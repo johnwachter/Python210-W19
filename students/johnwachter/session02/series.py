@@ -71,14 +71,15 @@ if __name__ == "__main__":
     assert fibonacci(7) == 13
 
     # run tests on lucas function
-    assert lucas(0) == 3
+    assert lucas(0) == 2
     assert lucas(1) == 1
 
     assert lucas(4) == 7
 
+    # test if sumseries function with only the necessary argument == ficonacci series, which should be the case
     assert sumseries(5) == fibonacci(5)
 
-    # test if sum_series matched lucas
+    # test if sumseries function matched lucas. sumeries is called with all three arguments and matches the values in the lucas function, namely that the zero index value == 2 and the first index value == 1
     assert sumseries(5, 2, 1) == lucas(5)
 
     print("tests passed")

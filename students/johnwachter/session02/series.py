@@ -70,7 +70,8 @@ if __name__ == "__main__":
     assert fibonacci(6) == 8
     assert fibonacci(7) == 13
 
-    assert lucas(0) == 2
+    # run tests on lucas function
+    assert lucas(0) == 3
     assert lucas(1) == 1
 
     assert lucas(4) == 7

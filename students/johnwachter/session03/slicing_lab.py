@@ -23,6 +23,10 @@ mytupl = (1,2,3,4,5,6,7,8,9)
 removeditems = remove(mytupl)
 print("Remove every other item")
 print(removeditems)
+assert remove("123456789") == "1357"
+asserttupltest = (1, 2, 3, 4)
+assert remove(asserttupltest) == (1, 3)
+print("Tests passed")
 print("="*45)
 
 def remove4everyother(string):
@@ -30,6 +34,8 @@ def remove4everyother(string):
 everyother4 = (1,2,3,4,5,'dontshow','show', 'dontshow', 'show', 6,7,8,9)
 print("first 4 and the last 4 items removed, and then every other item in the remaining sequence")
 print(remove4everyother(everyother4))
+assert remove4everyother("0000123450000") == "135"
+print("Test passed")
 print('='*45)
 
 def thirds(string):
@@ -41,6 +47,8 @@ def thirds(string):
 newthirds = thirds("111222333")
 print("last third, then first third, then the middle third in the new order")
 print(newthirds)
+assert thirds("123") == "312"
+print("Test passed")
 print("="*45)
 
 def reverse(string):
@@ -48,4 +56,6 @@ def reverse(string):
 reversedstring = reverse("reverse this string")
 print("Reverse a string")
 print(reversedstring)
+assert reverse("racecars") == "sracecar"
+print("Test passed")
 print("="*45)

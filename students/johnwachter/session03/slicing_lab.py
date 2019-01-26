@@ -2,28 +2,35 @@
 #Change Log: (Who, When, What)
 #JWachter, 2019-01-26, Created File and finished exercise
 
-def swap(string):
-    first = string[0]
-    last = string[-1]
-    mid = string[1:-1]
-    newstring = last + mid + first
-    return newstring
-
-swapped = swap("string")
-print("Swap String")
+def swap(sequence):
+    try:
+        first = sequence[0],
+        last = sequence[-1],
+        mid = sequence[1:-1]
+        newsequence = last + mid + first
+        return newsequence
+    except TypeError:
+        first = sequence[0]
+        last = sequence[-1]
+        mid = sequence[1:-1]
+        newsequence = last + mid + first
+        return newsequence
+swappedsequence = (0,1,2,3,4)
+swapped = swap(swappedsequence)
+print("Swap Sequence")
 print(swapped)
 assert swap("flipped") == "dlippef"
 print("Test passed")
 print("="*45)
 
 def remove(tupl):
-    newtupl = tupl[0:-1:2]
+    newtupl = tupl[::2]
     return newtupl
 mytupl = (1,2,3,4,5,6,7,8,9)
 removeditems = remove(mytupl)
 print("Remove every other item")
 print(removeditems)
-assert remove("123456789") == "1357"
+assert remove("123456789") == "13579"
 asserttupltest = (1, 2, 3, 4)
 assert remove(asserttupltest) == (1, 3)
 print("Tests passed")
@@ -44,11 +51,13 @@ def thirds(string):
     last = string[-thirds:]
     mid = string[thirds:-thirds]
     return last + first + mid
-newthirds = thirds("111222333")
+tuplethirds = (1,1,2,2,3,3)
+newthirds = thirds(tuplethirds)
 print("last third, then first third, then the middle third in the new order")
 print(newthirds)
 assert thirds("123") == "312"
-print("Test passed")
+assert thirds(tuplethirds) == (3, 3, 1, 1, 2, 2)
+print("Tests passed")
 print("="*45)
 
 def reverse(string):

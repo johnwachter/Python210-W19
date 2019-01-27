@@ -40,3 +40,12 @@ for fruit in reversedfruitlist:
         if yes_or_no == 'no':
             fruit_list.remove(fruit)
 print(fruit_list)
+
+#series4
+fruit_list_reversed = []
+for fruit in fruit_list:
+    reversefruit = fruit[::-1]
+    fruit_list_reversed.append(reversefruit)
+fruit_list.pop(-1)
+print("Original Fruit List with last removed {}".format(fruit_list))
+print("Copy of List, with items reversed {}".format(fruit_list_reversed))

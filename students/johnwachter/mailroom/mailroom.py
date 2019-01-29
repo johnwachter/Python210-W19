@@ -4,30 +4,29 @@
 #JWachter, 1/28/2019, built donor database
 
 import sys
+import collections
 
-donor_db = {"William Gates, III": [653772.32, 12.17],
-            "Jeff Bezos": [877.33],
-            "Paul Allen": [663.23, 43.87, 1.32],
-            "Mark Zuckerberg": [1663.23, 4300.87, 10432.0],
-            "Me Myself": [100]}
+donor_db = collections.OrderedDict(((("William Gates, III", [653772.32, 12.17]),
+                       ("Jeff Bezos", [877.33]),
+                       ("Paul Allen", [663.23, 43.87, 1.32]),
+                       ("Mark Zuckerberg", [1663.23, 4300.87, 10432.0]),
+                       ("Me Myself", [100]))))
 user_prompt = "\n".join(("Welcome to your Donor Database", "Please choose an option: ", "1 - Send a Thank You", "2 - Create a Report", "3 - Quit\n"))
 
 def sendthankyou():
     user_input = input(
         "Let's send some Thank You letters.\nType 'list' to see a list of donors, or\ninput the donors full name: ")
-    for record in donor_db:
-        for name in record:
-            if user_input in name:
-                amtdonated = int(input("Please enter the amount donated by {}: ".format(user_input)))
-                amtdonated
-                user_input_index = int(name.index(user_input))
-                print("###{}".format(user_input_index))
-                donor_db[4].insert(user_input_index, amtdonated)
-                print(donor_db)
-            elif user_input == 'list':
-                print(record[0])
-            elif user_input not in name:
-                print("k")
+    if user_input in donor_db:
+        amtdonated = int(input("Please enter the amount donated by {}: ".format(user_input)))
+        amtdonated
+        user_input_index = donor_db.keys().index(userinput)
+        print("###{}".format(user_input_index))
+        donor_db[4].insert(user_input_index, amtdonated)
+        print(donor_db)
+    elif user_input == 'list':
+        print(record[0])
+    elif user_input not in name:
+        print("k")
 
 # def sendthankyou():
 #     user_input = input(

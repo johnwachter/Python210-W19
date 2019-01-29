@@ -1,6 +1,7 @@
 #Title: Lab list_lab.py
 #Change Log: (Who, When, What)
 #JWachter, 2019-01-26, created file to explore the list data structure
+#JWachter, 2019-01-28, completed exercises and checkd my work
 
 #Series 1
 fruit_list = ["Apples", "Pears", "Oranges", "Peaches"]

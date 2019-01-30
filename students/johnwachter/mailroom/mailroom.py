@@ -1,9 +1,10 @@
 #Title: mailroom.py
 #Change Log: (Who, When, What)
-#JWachter, 1/19/2019, creating file to upload to github
-#JWachter, 1/28/2019, built donor database
+#JWachter, 2019-01-28, Created File
+#JWachter, 2019-01-28, built donor database
 #JWachter, 2019-01-28, imported ordered dictionary to update info in dictionary
 #JWachter, 2019-01-28, realized I don't need an ordered dictionary, no longer importing
+#JWachter. 2019-01-29, adding while loop to get user input and not return to the main menu until specified
 
 import sys
 
@@ -15,45 +16,33 @@ donor_db = {"William Gates, III" : [653772.32, 12.17],
 user_prompt = "\n".join(("Welcome to your Donor Database", "Please choose an option: ", "1 - Send a Thank You", "2 - Create a Report", "3 - Quit\n"))
 
 def sendthankyou():
-    user_input = input(
-        "Let's send some Thank You letters.\nType 'list' to see a list of donors, or\ninput the donors full name: ")
-    if user_input in donor_db:
-        amtdonated = int(input("Please enter the amount donated by {}: ".format(user_input)))
-        amtdonated
-        donor_db[user_input].append(amtdonated)
-        print(donor_db)
-    elif user_input == 'list':
-        print(record[0])
-    elif user_input not in name:
-        print("k")
+    user_input = ""
+    while user_input != "Main Menu":
+        user_input = input("Let's send some Thank You letters.\nType 'list' to see a list of donors, or input the donors full name to add a gift and send a Thank You letter. To return to the main menu, type 'Main Menu': ")
+        if user_input in donor_db:
+            amtdonated = int(input("Please enter the amount donated by {}: ".format(user_input)))
+            donor_db[user_input].append(amtdonated)
+            print("+"*45 + "\nNice! Thanks for the ${}, {}!\n\nSincerely, me\n".format(amtdonated, user_input) + "+"*45)
+        elif user_input == 'list':
+            for donor in donor_db:
+                print(donor + "\n")
+        elif user_input not in donor_db and user_input != 'Main Menu':
+            donor_db[user_input] = []
+            print("Great, {} has been added to the donor database.".format(user_input))
+            amtdonated = int(input("Please enter the amount donated by {}: ".format(user_input)))
+            donor_db[user_input].append(amtdonated)
 
-# def sendthankyou():
-#     user_input = input(
-#         "Let's send some Thank You letters.\nType 'list' to see a list of donors, or\ninput the donors full name: ")
-#     for record in donor_db:
-#         for name in record:
-#             # print(name)
-#             # if 'Me Myself' in record:
-#             #     print("true")
-#             # else: print("false")
-#             if user_input in name:
-#                 #print("true")
-#                 amtdonated = int(input("Please enter the amount donated by {}: ".format(user_input)))
-#                 amtdonated
-#                 user_input_index = int(name.index(user_input))
-#                 print("###{}".format(user_input_index))
-#                 donor_db[4].insert(user_input_index, amtdonated)
-#                 print(donor_db)
-#             elif user_input == 'list':
-#                 print(record[0])
-#             elif user_input not in name:
-#                 print("k")
 
 def createreport():
-    print("Great, let's create a report")
-    for record in donor_db:
-        for name in record:
-            print(name)
+    print("        Here is your report\n" + "="*45)
+    print("Donor Name          |  Total Given  | Num Gifts | Average Gift")
+    print("--------------------------------------------------------")
+    l = max(len(donor) for donor in donor_db)
+    for donor in donor_db:
+        avg = sum(donor_db[donor])/len(donor_db[donor])
+        print("{:20} |".format(donor), "${0:10,.2f}|".format(sum(donor_db[donor])), "{:>4} {:<4}|".format(len(donor_db[donor]),"gifts"), "${0:<10,.2f}".format(avg))
+    main()
+    print("+++++++++++++++++++++")
 
 def quitprogram():
     print("Goodbye")

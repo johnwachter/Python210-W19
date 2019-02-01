@@ -12,8 +12,9 @@ if 'Mango' in mydict.values():
     print('Mango is in the dictionary')
 else: print('Mango not in dictionary')
 
+#Dictionaries2 - What???
 
-
+#Sets1
 s2 = range(0,21)
 s3 = range(0,21)
 s4 = range(0,21)
@@ -43,5 +44,17 @@ print(s2, s3, s4)
 print(s3 < s2)
 print(s4 <s2)
 
+#Sets2
 
+pyset = {'p', 'y', 't', 'h', 'o', 'n'}
+pyset.add('i')
+print(pyset)
 
+marathonset = frozenset = {'m','a','r','a','t','h','o','n'}
+print(marathonset)
+
+union = pyset | marathonset
+print(union)
+
+intersection = pyset & marathonset
+print(intersection)

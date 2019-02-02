@@ -44,10 +44,19 @@ def createreport():
     main()
     print("+++++++++++++++++++++")
 
+# def donorcategory():
+#     for donor in donor_db:
+#         if int(sum(donor_db[donor])) < 10000:
+#             return 'measly'
+#         else:
+#             return 'generous'
+
 def createthankyouletters():
     for donor in donor_db:
         with open('/Users/John/Python210-W19/students/johnwachter/mailroom/{}_letter.txt'.format(donor), 'w') as donorletter:
-            donorletter.write("+"*45 + "\nNice!\n\nThanks, {} for the ${}!\n\nSincerely, me\n".format(donor, donor_db[donor][-1]) + "+"*45)
+            donorletter.write("+"*45 + "\nNice!\n\nThanks, {} for the ${}! You have given ${} since you started donating.\n\nSincerely, me\n".format(donor, donor_db[donor][-1], sum(donor_db[donor])) + "+"*45)
+    print("Letters generated.\n")
+
 
 def quitprogram():
     print("Goodbye")

@@ -1,4 +1,6 @@
-words = "I wish I may I wish I might".split()
+import random
+
+words = "This random third of text data is meaningless".split()
 def buildtrigrams(words):
     trigrams = {}
     for i in range(len(words) - 2):
@@ -11,11 +13,18 @@ def buildtrigrams(words):
             trigrams.setdefault(pair, followerlist)
     return trigrams
 
+def mixwords(trilist):
+    completebook = []
+    for item in trilist:
+        for i in item:
+            completebook.append(trigrams[item])
+    for item in completebook:
+        print(" ".join(random.choice(completebook)), end=" ")
+
 if __name__ == "__main__":
     trigrams = buildtrigrams(words)
-    print(buildtrigrams(words))
-    # print("keys are {}".format(trigrams.keys()))
-    # print("values are {}".format(trigrams.values()))
+    trilist = list(buildtrigrams(words))
+    mixwords(trilist)
 
 
 

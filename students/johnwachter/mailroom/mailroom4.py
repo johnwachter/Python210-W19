@@ -4,7 +4,6 @@
 #JWachter, 2019-02-16, Updated create report function to split data processing and data presentation. Now have 2 funcs
 #JWachter, 2019-02-16, Added two new helper functions to print an email and add donor info to the database, pulling them out of the send thank you function
 
-
 import sys
 
 donor_db = {"William Gates, III": [653772.32, 12.17],
@@ -16,20 +15,23 @@ user_prompt = "\n".join(("Welcome to your Donor Database", "Please choose an opt
 
 def sendthankyou(database=donor_db):
     user_input = ""
-    donorlist = []
     while user_input.lower() != "Main Menu":
         user_input = input(
             "Let's send some Thank You letters.\nType 'list' to see a list of donors, or input the donors full name to add a gift and send a Thank You letter. To return to the main menu, type 'Main Menu': ")
         if user_input == "list":
-            for donor in database:
-                donorlist.append(donor)
-                print(donor + "\n")
+            print("\n", donorlist(), "\n")
         elif user_input != "Main Menu":
             amtdonated = int(input("Please enter the amount donated: "))
             adddonation(user_input, amtdonated, database)
             print(tyemail(user_input, amtdonated))
         else:
             main()
+
+def donorlist():
+    donorlist = []
+    for donor in donor_db:
+        donorlist.append(donor)
+    return donorlist
 
 def adddonation(userinput, donationamount, database=donor_db):
     try:
@@ -45,7 +47,7 @@ def tyemail(user_input, amtdonated):
     thankyouletterdict = {"Name": user_input, "Amount": amtdonated}
     print("+" * 45 + "\nNice!\n Thanks, {Name} for the ${Amount}!\n\nSincerely, me\n".format(
         **thankyouletterdict) + "+" * 45)
-    
+
 def createreport(database = donor_db):
     try:
         reportstring = str("        Here is your report\n" + "="*65 + "\n" + "Donor Name          |  Total Given  | Num Gifts | Average Gift\n" +
@@ -64,15 +66,13 @@ def displayreport():
 def tylettertxt():
     listtxt = {}
     for donor in donor_db:
-    #txt = "+"*45 + "\nNice!\n\nThanks, {} for the ${}! You have given ${} since you started donating.\n\nSincerely, me\n".format(donor, donor_db[donor][-1], sum(donor_db[donor])) + "+"*45
         listtxt.update({donor: "+"*45 + "\nNice!\n\nThanks, {} for the ${}! You have given ${} since you started donating.\n\nSincerely, me\n".format(donor, donor_db[donor][-1], sum(donor_db[donor])) + "+"*45})
-    print(listtxt)
     return listtxt
 
 def createthankyouletters(txt = tylettertxt()):
     for donor in donor_db:
         with open('/Users/John/Python210-W19/students/johnwachter/mailroom/{}_letter.txt'.format(donor), 'w') as donorletter:
-                donorletter.write(txt)
+            donorletter.write(txt)
     print("Letters generated.\n")
 
 
